@@ -6,7 +6,6 @@ jobs:
     working_directory: /projects/dataloaden
     steps: &steps
       - checkout
-      - run: go generate ./example/... && if [[ $(git diff) ]] ; then echo "you need to run go generate" ; git diff ; exit 1 ; fi
-      - run: go test -bench=. -benchmem -v ./example/...
-      - run: go test -bench=. -benchmem -v ./example/... -race
-      - run: go test -coverprofile=coverage.txt -covermode=atomic ./example && bash <(curl -s https://codecov.io/bash)
+      - run: go test -bench=. -benchmem -v .
+      - run: go test -bench=. -benchmem -v . -race
+      - run: go test -coverprofile=coverage.txt -covermode=atomic . && bash <(curl -s https://codecov.io/bash)
